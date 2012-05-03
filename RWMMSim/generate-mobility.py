@@ -13,14 +13,14 @@
 #   0.07: removed the 'from import *', they are bad due to overloading and namespace confusion
 #   0.08: added functionality to generate a new config file if last one is borked (2012-may-01)
 #   0.09: removed plotting of 3 first nodes, it was a temporary thing anyway. Thanks Teo Kar Hoey!
-#   0.10: protected against non-valid input in conf file
+#   0.10: protected against non-valid input in conf file, disregards any #comments from .txt file no matter where they come
 #   
 #   
 
 # Planned:
 #   * mess of mixed global variables and passed args to functions
 #   * statistical metric on mobility: in what percentile is each node? Most mobile? Bottom 10%?
-#   * disregard any #comments from .txt file no matter where they come
+#   * 
 #   .......
 # ------------------------------------------------------------------------------
 
@@ -70,8 +70,6 @@ maxy = 0
 minspeed = 0
 maxspeed = 0
 disregardtime = 0
-
-
 
 #---------------------------------------------------------------------------
 # Updates the logfile
@@ -254,12 +252,6 @@ def main():
     maxtime = maxtime + disregardtime
 
     #minor error checking----------------------------
-    if maxtime < 0:
-        # the maximum maxtime is too big or small
-        if maxtime >3600:
-            print("Maxtime too big! Changed to 3600 [s] (== 1 hour).")
-            maxtime = 3600
-
     if minspeed > maxspeed:
         # user switched places on min and max
         temp = minspeed
@@ -272,13 +264,7 @@ def main():
         minpause = maxpause
         maxpause = temp
 
-    if noofnodes > 100:
-        # the number of nodes are too many
-        print("nodes too many! Less than 100; " + str(noofnodes))
-        noofnodes = 100
-
     #generate waypoints as linked list------------------------
-
     # init linked list
     nodelist = WSNnodelist.Stack()
 
