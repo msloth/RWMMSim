@@ -1,6 +1,5 @@
-randomPublicRamblings
+RWMMSim
 =====================
-Contact information: Marcus Lunden <marcus.lunden@gmail.com>
 
 * RWMMSim is a Random Waypoint Mobility Model position data generator for use with
 the Contiki COOJA network simulator. It allows you to generate position data for
